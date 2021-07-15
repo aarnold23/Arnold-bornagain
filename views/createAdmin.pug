@@ -1,0 +1,52 @@
+  extends layout
+block content
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css')
+    link(rel='stylesheet' href='zawashlogin.css')
+    .body
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
+  .container-fluid
+    a.navbar-brand(href='/home')
+      img.d-inline-block.align-text-top(src='icons8-automatic-car-wash-48 (1).png' alt='' width='40' height='40')
+      h3.title Zawash
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        li.nav-item
+          a.nav-link(aria-current='page' href='/home') Home
+        li.nav-item
+          a.nav-link(href='/register') Add Washer
+        li.nav-item.dropdown
+          a#navbarDropdown.nav-link.dropdown-toggle.active(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
+            | Registration
+          ul.dropdown-menu(aria-labelledby='navbarDropdown')
+            li
+              a.dropdown-item(href='/customerReg') Customer Register
+            li
+              a.dropdown-item(href='/expenses') Expenses
+            li
+              hr.dropdown-divider
+            li
+              a.dropdown-item(href='/create') Create New User
+      ul.navbar-nav
+        li.nav-item
+          a.nav-link(href='/login' tabindex='-1' aria-current='true') Login
+
+      form(method='post',action="/login" name= "carWash")
+        h2.sr-only Login Form
+        .h2 Create new user
+        .form-group
+        select#dropdown(name='create')
+              option(value= 'Select your role?') Select your Role?
+              |               &gt;
+              option(value='Admin') Admin
+              option(value='Employee') Employee
+        .form-group
+          input.form-control(type='password' name='confirmPassword' placeholder='confirmPassword')
+        .form-group
+          input.form-control(type='password' name='password' placeholder='Password')
+        
+        .form-group
+          button.btn.btn-primary.btn-block(type='submit') Log In
+        a.forgot(href='#')
+        | Forgot your password?
