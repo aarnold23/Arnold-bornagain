@@ -1,27 +1,38 @@
 const mongoose = require('mongoose');
 
 const customerSchema = mongoose.Schema({
-    pname:{
-    type: String,
-    trim: true
+      pnumber :{
+      type: String,
+      trim: true
     
-},
+    },
+    doa:{
+        type: Date,
+
+    },
+
     price: {
         type: Number,
-        trim:true
+        
         
     },
-     ctype:{
+    washerFee:{
+        type: Number
+    },
+
+    ctype:{
         type: String,
         trim: true
     },
     package:{
-        type: Number
+        type: String
         
     },
-     wname :{
-        type: String
-    }
+    wname :{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Wname",
+    },
+
     
     });
-    module.exports = mongoose.model('customerRegroutes',customerSchema );
+    module.exports = mongoose.model('Customer',customerSchema );

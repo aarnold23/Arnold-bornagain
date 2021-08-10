@@ -4,53 +4,65 @@ extends layout
 
 
 block content
-      link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC' crossorigin='anonymous')
-      link(rel='stylesheet' href='customer.css')
-      nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
+      link( href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous")
+      link(href='customer.css' rel='stylesheet')
+      title Customer Register
+      nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
           .container-fluid
-              a.navbar-brand(href='#')
-                img.d-inline-block.align-text-top(src='icons8-automatic-car-wash-48.png' alt='' width='40' height='40')
-                h3.title Zawash
+              a.navbar-brand(href='/home')
+                  img.d-inline-block.align-text-top(src='icons8-automatic-car-wash-48.png' alt='' width='40' height='40')
+                  h3.title Zawash
               button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
-                span.navbar-toggler-icon
+                  span.navbar-toggler-icon
               #navbarSupportedContent.collapse.navbar-collapse
-                ul.navbar-nav.me-auto.mb-2.mb-lg-0
-                  li.nav-item
-                    a.nav-link(aria-current='page' href='/home') Home
-                  li.nav-item
-                    a.nav-link(href='/register') Add Washer
-                  li.nav-item.dropdown
-                    a#navbarDropdown.nav-link.dropdown-toggle.active(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
-                      | Registration
-                    ul.dropdown-menu(aria-labelledby='navbarDropdown')
-                      li
-                        a.dropdown-item(href='/customerReg') Customer Register
-                      li
-                        a.dropdown-item(href='/expenses') Expenses
-                      li
-                        hr.dropdown-divider
-                      li
-                        a.dropdown-item(href='/create') Create New User
-                ul.navbar-nav
-                  li.nav-item
-                    a.nav-link(href='/' tabindex='-1' aria-current='true') Login
-          
+                  ul.navbar-nav.me-auto.mb-2.mb-lg-0
+                      li.nav-item
+                          a.nav-link(aria-current='page' href='/home') Home
+                      li.nav-item
+                          a.nav-link(aria-current='page' href='/payouts') Reports
+                      li.nav-item
+                          a.nav-link.active(aria-current='page' href='/customerReg') Customer Reg.
+                      li.nav-item
+                          a.nav-link(aria-current='page' href='/register') Washer Reg.
+                      li.nav-item
+                          a.nav-link(aria-current='page' href='/expenses') Expenses Reg. 
+                      li.nav-item
+                          a.nav-link(aria-current='page' href='/create') Create Admin.
+                  ul.navbar-nav
+                      li.nav-item
+                          a.nav-link(href='/logout' tabindex='-1' aria-current='true') Logout
       br
       h1 Customer Register
       br
       | &grave;  
       .container
         #form-wrapper.myform
-          form(id='' name='customerRegister' method='POST' action='/customerReg')
+          br
+          if alert == "success"
+            div.alert.alert-success Vehicle added successfully
+          if alert == "error"
+            div.alert.alert-danger An error occurred, failed to add vehicle
+          form(method="POST" action='/customerReg')
             .row
+              .form-group.col-12
+                label Datetime arrival
+                input.form-control(type='date' name='doa' placeholder='dateOfarrival' id='doa')
+              br
               .form-group.col-12
                 label Plate Number
                 input.form-control(type='text' name='pnumber' placeholder='Plate Number' id='pname')
               br
               br
               .form-group.col-12
-                label Price
-                input.form-control(type='number' name='price' placeholder='Price' id='price')
+                label Package
+                select.form-select(type='text' name='package' placeholder= 'package' id='pkg')
+                  option(value='select') 
+                  |        &gt;
+                  option(value= 'fullWash') Full Wash(20,000)
+                  option(value='smallCar') Small Car(10,000)
+                  option(value='mediumCar') Medium Car(15,000)
+                  option(value='bodaWash') Boda Wash(5,000)
+                  option(value='engineWash') Engine Wash(10,000)
               br
             .row
               .form-group.col-6
@@ -58,21 +70,18 @@ block content
                 input.form-control(type='text' name='ctype' placeholder='Cartype' id='ctype')
               br
               .form-group.col-6
-                label Package
-                input.form-control(type='text' name='package' placeholder='Package' id='package')
-              br
-              .form-group.col-12
                 label Washer Name
-                input.form-control(type='text' name='wname' placeholder='Washer Name' id='Wname')
-            br
-            .row
-              .form-group.col-sm-6
-                input.btn.btn-primary(type='submit' value='submit')
+                select.form-control(type='text' name='wname' placeholder='Washer Name' id='wname' )
+                  option(value='select')
+                  each x  in washers
+                    option(value= x._id) #{x.username}
+              br
+              .form-group
+                button.btn.btn-primary.btn-block.register-account(type='submit' value='submit' onclick='validation()') Submit
      
-      // Optional JavaScript; choose one of the two!
-      // Option 1: Bootstrap Bundle with Popper
-      script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous')
-      // Option 2: Separate Popper and Bootstrap JS
-      //
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    
+      //script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous')
+      
+        
+      //script(src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous")
+      //script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous")

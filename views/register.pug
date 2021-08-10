@@ -4,62 +4,61 @@ extends layout
 
 block content
     .body
-        link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css')
         link( href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous")
         link(rel='stylesheet' href='register.css')
-        nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
-          .container-fluid
-            a.navbar-brand(href='#')
-              img.d-inline-block.align-text-top(src='icons8-automatic-car-wash-48.png' alt='' width='40' height='40')
-              h3.title Zawash
-            button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
-              span.navbar-toggler-icon
-            #navbarSupportedContent.collapse.navbar-collapse
-              ul.navbar-nav.me-auto.mb-2.mb-lg-0
-                li.nav-item
-                  a.nav-link(aria-current='page' href='/home') Home
-                li.nav-item
-                  a.nav-link.active(href='/register') Add Washer
-                li.nav-item.dropdown
-                  a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
-                    | Registration
-                  ul.dropdown-menu(aria-labelledby='navbarDropdown')
-                    li
-                      a.dropdown-item(href='/customerReg') Customer Register
-                    li
-                      a.dropdown-item(href='/expenses') Expenses
-                    li
-                      hr.dropdown-divider
-                    li
-                      a.dropdown-item(href='/create') Create New User
-              ul.navbar-nav
-                li.nav-item
-                  a.nav-link(href='/rs' tabindex='-1' aria-current='true') Login
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+              .container-fluid
+                  a.navbar-brand(href='#')
+                      img.d-inline-block.align-text-top(src='icons8-automatic-car-wash-48.png' alt='' width='40' height='40')
+                      h3.title Zawash
+                  button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-live ='false' aria-label='Toggle navigation')
+                      span.navbar-toggler-icon
+                  #navbarSupportedContent.collapse.navbar-collapse
+                      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+                          li.nav-item
+                            a.nav-link(aria-current='page' href='/home') Home
+                          li.nav-item
+                            a.nav-link(aria-current='page' href='/payouts') Reports
+                          li.nav-item
+                            a.nav-link(aria-current='page' href='/customerReg') Customer Reg.
+                          li.nav-item 
+                            a.nav-link.active(aria-current='page' href='/register') Washer Reg.
+                          li.nav-item 
+                            a.nav-link(aria-current='page' href='/expenses') Expenses Reg.
+                          li.nav-item 
+                            a.nav-link(aria-current='page' href='/create') Create Admin
+                          
+                      ul.navbar-nav
+                          li.nav-item
+                              a.nav-link(href='/login/logout' tabindex='-1' aria-current='true') Login
         br
-        .container
-          .registration-form
-            form(method="post" ,action="/register" name='form') 
-              .form-icon
-                span
-                 i.icon.icon-user
-              .form-group
-                input#username.form-control.item(type='text' placeholder='Username' name= 'username')
-              .form-group
-                input#password.form-control.item(type='text' placeholder='NIN' name= 'nin')
-              .form-group
-                input#email.form-control.item(type='text' placeholder='Residence' name= 'residence')
-              .form-group
-                input#phone-number.form-control.item(type='text' placeholder='Phone Number' name= 'phonenumber')
-              .form-group
-                input#birth-date.form-control.item(type='date' placeholder='Birth Date' name='birthdate' )
-              .form-group
-                button.btn.btn-block.register-account(type='submit') Register
-          
-              
-          script(type='text/javascript' src='https://code.jquery.com/jquery-3.2.1.min.js')
-          script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js')
-          script(src='register.js')
-
+        .container 
+        h2.title Washer Register 
+        -data = data || {}
+         if alert == "success"
+            div.alert.alert-success Vehicle added successfully
+         if alert == "error"
+            div.alert.alert-danger Fill in all fields 
+        .registration-form
+          form(method="post" action="/register") 
+            .form-icon
+              span
+              i.icon.icon-user
+            .form-group
+              input#username.form-control.item(type='text' placeholder='Username' name= 'username'  value=data.username)
+            .form-group
+              input#nin.form-control.item(type='text' placeholder='NIN' name= 'nin'  value=data.nin)
+            .form-group
+              input#res.form-control.item(type='text' placeholder='Residence' name= 'residence' value=data.res)
+            .form-group
+              input#pnumba.form-control.item(type='text' placeholder='Phone Number' name= 'phonenumber'  value=data.pnumba)
+            .form-group
+              input#dob.form-control.item(type='date' placeholder='Birth Date' name='dob'  value= data.dob)
+            .form-group
+              button.btn.btn-primary.btn-block.register-account(type='submit' value='Submit') Register
+        
+            
+      
 
 
 

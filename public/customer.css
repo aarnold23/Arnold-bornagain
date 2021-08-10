@@ -8,11 +8,11 @@ h1{
     text-align:center;
     font-weight:400;
     font-family:Georgia, 'Times New Roman', Times, serif;
-    color:rgb(139, 16, 163);
+    
 }
 
 .myform{
-    background: white;
+    background-color:#1e2833;
     width: 75%;
     height: 50%;
     padding: 25px 25px 25px 25px;
@@ -21,31 +21,11 @@ h1{
     
 }
 
-
-
-
-table{
-    border-collapse: collapse;
-    width: 50%;
-    margin:50px auto;
-    background-color: burlywood;
+label {
+    color:rgb(255, 255, 255);
 }
-table,th,td {
-    border: 2px solid balck;
-    padding: 5px;
+button{
+    align-self: start;
+}
 
-}
-th {
-    font-size: 30px;
-    font-weight: 700;
-    font-family: Arial;
-    color:004d00;
-}
-td {
-    font-size: 25px;
-    color: crimson;
-    font-weight: 400;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
-}
 

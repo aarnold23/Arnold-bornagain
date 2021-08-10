@@ -21,4 +21,4 @@ const registerSchema = mongoose.Schema({
     }
     
     });
-    module.exports = mongoose.model('registerRoutes',registerSchema )
+    module.exports = mongoose.model('employee',registerSchema )

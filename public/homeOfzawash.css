@@ -40,7 +40,7 @@ body {
     
 }
 .card:hover .gradient{
-    opacity: 5;
+    opacity: 1;
 }
 .gradient{
     position: absolute;

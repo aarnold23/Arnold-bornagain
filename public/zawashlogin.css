@@ -1,9 +1,6 @@
 .body {
     height:1000px;
     background:#475d62 ;
-    background-size:relative;
-    background-repeat: no-repeat;
-    position:center;
   }
   
 .body form {

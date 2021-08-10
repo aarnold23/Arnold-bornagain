@@ -10,17 +10,19 @@ html
     .body
         br
         br
-    
-        form(method='post',action="/login", name= "carWash")
+        if alert == "error"
+          div.alert.alert= "danger An error occured, invalid userid or password"
+        br
+        form(method='post' action="/" name= "carWash")
           h2.sr-only Login Form
           .illustration
             i.icon.ion-ios-locked-outline
           .form-group
-            input.form-control(type='text' name='UserId' placeholder='UserId')
+            input.form-control(type='text' name='username' placeholder='UserName')
           .form-group
             input.form-control(type='password' name='password' placeholder='Password')
           .form-group
-            a.button.btn.btn-primary.btn-block(type='submit' href='/home') Log In
+            a.button.btn.btn-primary.btn-block(type='submit' href='/customerReg') Log In
           a.forgot(href='#')
               | Forgot your password?
           
