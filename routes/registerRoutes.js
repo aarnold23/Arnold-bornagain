@@ -5,7 +5,6 @@ const Customer= require('../models/Customermodels');
 const Admin = require('../models/AdminModel');
 const Expense = require('../models/ExpenseModels'); 
 const Employee = require('../models/RegisterModels');
-const { check, validationResult } = require('express-validator');
 
 washPackages={
     smallCar:{washerFee: 3000, price: 10000},   
@@ -23,41 +22,21 @@ router.get('/register',(req,res)=>{
     res.render('register', {title:"Employee Register", alert: req.query.alert})
 });
 
-router.post ('/register', [
-    check('username')
-      .isLength({ min: 1 }),
-    check('nin')
-      .isLength({ min: 1}),
-    check('residence')
-      .isLength({ min: 1 }),
-    check('phonenumber')
-      .isLength({ min: 1 }),
-    check('Birth Date')
-      .isLength({min:1})
-      
-  ],
+router.post ('/register', 
+
   async(req,res)=>{
     
     try{
-        const errors = validationResult(req);
-
-        if (errors.isEmpty()) {
-          res.send('Thank you for your registration!');
-        } else {
-          res.status(400).render('register?alert=error',{title:"Employee Register", 
-          alert: req.query.alert,
-          errors:error,
-          data: req.body
-          });
-        }
+       
      const register= new Employee(req.body);
      await register.save()
       res.redirect('register?alert=success')
+      
     }
     catch (err) {
        res.status(400).render('register?alert=error',{title:"Employee Register", alert: req.query.alert})
        console.log(err)}
-     })
+     });
 
 
     router.get('/customerReg',async(req,res)=>{
@@ -103,8 +82,8 @@ router.post ('/register', [
     const admin = new Admin(req.body);
     await Admin.register(admin,req.body.password,(err)=>{
              if (err){
-                return res.status(400).render('createAdmin', {title:"Create Admin", alert:'error'})
-                 console.log(err)
+                 res.status(400).render('createAdmin', {title:"Create Admin", alert:'error'})
+                 
              } 
              else {
                  res.redirect('/create')

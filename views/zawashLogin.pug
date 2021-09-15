@@ -6,6 +6,8 @@ html
         title Login
         link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css')
         link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css')
+        link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous")
+
         link(rel='stylesheet' href='zawashlogin.css')
     .body
         br
@@ -13,7 +15,7 @@ html
         if alert == "error"
           div.alert.alert= "danger An error occured, invalid userid or password"
         br
-        form(method='post' action="/" name= "carWash")
+        form(method='POST' action="/" )
           h2.sr-only Login Form
           .illustration
             i.icon.ion-ios-locked-outline

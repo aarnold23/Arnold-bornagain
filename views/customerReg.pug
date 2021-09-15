@@ -73,7 +73,7 @@ block content
                 label Washer Name
                 select.form-control(type='text' name='wname' placeholder='Washer Name' id='wname' )
                   option(value='select')
-                  each x  in washers
+                  each x in washers
                     option(value= x._id) #{x.username}
               br
               .form-group

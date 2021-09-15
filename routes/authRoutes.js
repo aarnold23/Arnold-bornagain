@@ -6,10 +6,11 @@ router.get('/',(req,res)=>{
 });
 
 //checks username and password using passport
-router.post('/', passport.authenticate('local',{ failureRedirect: '/?alert=error'}),
+router.post('/', passport.authenticate('local',
+{ failureRedirect: '/?alert=error'}),
 (req,res)=> {
  req.session.user = req.user
- res.redirect('/register');
+ res.redirect('/customerReg');
 })
 
 router.get('/logout', (req,res) =>{
