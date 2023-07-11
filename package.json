@@ -19,7 +19,7 @@
     "express-validator": "^6.12.1",
     "jquery": "^3.6.0",
     "koa": "^2.13.1",
-    "mocha": "^9.1.1",
+    "mocha": "^9.2.2",
     "moment": "^2.29.1",
     "mongoose": "^5.13.0",
     "morgan": "^1.10.0",
